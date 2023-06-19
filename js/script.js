@@ -1,37 +1,32 @@
-const urlCadUsu = 'http://localhost:8081/rota-users/add/';
-const base_url = 'http://localhost:5500/';
-let movie;
+const url = 'http://localhost:8081/rota-users';
 
-//Cadastrar usuario
-function cadUsuario() {
-    const nickname = $("#usuario").val();
+// Autenticar usuário
+function authUsu() {
     const email = $("#email").val();
-    const password = $("#password").val();
+    const password = $("#pwd").val();
 
-    // const body = `{
-    //     "nick":"${nickname}",
-    //     "email":"${email}",
-    //     "pwd":"${password}"
-    // }`;
-
-    const body = {
-        "nick": nickname,
-        "email": email,
-        "pwd": password
-    };
+    // JSON que a API precisa
+    const body = JSON.stringify({
+        email: email,
+        pwd: password
+    });
 
     $.ajax({
-        type: "POST",
-        url: urlCadUsu,
+        url: url + "/auth",
+        method: "POST",
         data: body,
-        success: (res) => {
+        success: function (res) {
             console.log('post done.');
-            window.location.href = ../index.html;
+            // Salva o JSON retornado no localStorage
+            const response = $.parseJSON(res);
+            localStorage.setItem("userId", response.id_user);
+            localStorage.setItem("userEmail", response.email);
+            localStorage.setItem("userNick", response.nick);
+            window.location.href = '../views/home.html';
         },
-        contentType: "application/json",
-        dataType: "json"
+        error: function (error) {
+            console.log('Error:', error);
+        },
+        contentType: "application/json"
     });
 }
-
-
-
