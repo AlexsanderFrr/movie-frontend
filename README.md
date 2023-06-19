@@ -8,8 +8,8 @@
 
   ### Pré-requisitos
 
-  - Node.js instalado (versão X.X.X)
-  - NPM (Node Package Manager) ou Yarn
+  - ReactNative instalado (versão X.X.X)
+
 
   ### Passo a passo
 
