@@ -1,35 +1,62 @@
 import {
     StyleSheet, Text, View,
-    SafeAreaView, TextInput, TouchableOpacity
+    SafeAreaView, TextInput, TouchableOpacity, FlatList
 } from 'react-native';
+
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
+
+
 export default function Genres() {
-    const [id_genre, setId_genre] = useState("");
-    const [genre, setGenre] = useState("");
+    const [id, setId] = useState("");
+    const [genero, setGenre] = useState("");
+    const [listaGeneros, setListaGeneros] = useState([]);
+
+
+    useEffect(() => {
+        async function getGeneros() {
+            const response = await axios.get('http://localhost:8081/rota-genres/all');
+            setListaGeneros(response.data);
+        }
+        getGeneros();
+    }, []);
+
+
     function limpar() {
         setGenre('');
     }
+
+
+
     async function cadastroGenero(ev) {
         ev.preventDefault();
         await axios.post('http://localhost:8081/rota-genres/add', {
-            genre: genre
-        })
-            .then((response) => {
-                console.log(response);
-                limpar();
-                alert("Cadastrado");
-            });
+            genre: genero
+        }).then((response) => {
+            console.log(response);
+            limpar();
+            alert(" Gênero Cadastrado");
+            setListaGeneros([...listaGeneros, response.data]);
+        });
     }
+
+    const renderItem = ({ item }) => (
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10 }}>
+            <Text>{item.genre}</Text>
+            <TouchableOpacity><Text>Editar</Text></TouchableOpacity>
+        </View>
+    );
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ alignItems: "center" }}>
-                <Text style={styles.text}>Gênero</Text>
+                <Text style={styles.text}>Gêneros</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Digite gênero aqui"
-                    value={genre}
-                    onChangeText={(texto) => setGenero(texto)}
+                    placeholder="Digite o gênero aqui"
+                    value={genero}
+                    onChangeText={(texto) => setGenre(texto)}
                 />
             </View>
             <View style={styles.areaBtn}>
@@ -40,9 +67,15 @@ export default function Genres() {
                     <Text style={styles.botaoText}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>
+            <FlatList
+                data={listaGeneros}
+                renderItem={renderItem}
+                keyExtractor={item => item._id}
+            />
         </SafeAreaView>
     );
 }
+
 //css
 const styles = StyleSheet.create({
     container: {
