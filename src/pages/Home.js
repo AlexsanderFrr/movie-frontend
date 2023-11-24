@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
-//import "./MoviesGrid.css";
 import "./MoviesGrid.css";
 
 
@@ -26,7 +25,7 @@ const Home = () => {
   return (
 
     <div className="container">
-      <h2 className="title">Melhores filmes:</h2>
+      <h2 className="title">Melhores filmes</h2>
 
 
       <div className="movies-container">
