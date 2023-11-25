@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiCameraMovie, BiSearchAlt2 } from "react-icons/bi";
 
@@ -14,7 +14,7 @@ const Navbar = () => {
     if (!search) return;
 
     // Construa a URL de pesquisa para a API
-    const searchUrl = `http://localhost:8081/rota-movies/title/${search}`;
+    const searchUrl = `/search/${search}`;
 
     // Navegue para a nova URL
     navigate(searchUrl, { replace: true });
@@ -28,7 +28,7 @@ const Navbar = () => {
           <BiCameraMovie /> Movies
         </Link>
       </h2>
-  
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -43,9 +43,7 @@ const Navbar = () => {
 
       {/* Alterei a rota para 'cadastro' */}
       <Link to="/cadastro">
-        <button className="cadfilme">
-          Cadastrar Filme
-        </button>
+        <button className="cadfilme">Cadastrar Filme</button>
       </Link>
     </nav>
   );

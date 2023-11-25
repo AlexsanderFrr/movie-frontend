@@ -60,3 +60,88 @@
     background-color: transparent;
     color: #f7d354;
   }
+
+  .botaoExcluir {
+    background-color: #ffcd38; 
+    color: #000000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .botaoExcluir:hover {
+    background-color: transparent;
+    color: #f7d354; 
+  }
+
+  .botaoEditar {
+    background-color: #ffcd38; 
+    color: #000000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+  
+  .botaoEditar:hover {
+    background-color: transparent;
+    color: #f7d354; 
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(255, 193, 7, 0.8);
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ModalEdicao.css */
+
+.modal-edicao {
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(255, 193, 7, 0.8);
+}
+
+.modal-content {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

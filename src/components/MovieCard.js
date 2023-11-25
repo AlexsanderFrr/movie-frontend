@@ -8,18 +8,35 @@ const MovieCard = ({ movie, showLink = true }) => {
   console.log("Dados da imagem:", imageUrl);
 
   return (
-    <div className="movie-card" style={{ maxWidth: "350px", borderRadius: "10px", overflow: "hidden" }}>
-       <h3 style={{ fontFamily: "Merriweathe, sans-serif", textAlign: 'center', fontSize: '22px', marginTop: '8px'  }}>{movie.titulo}</h3>
+    <div
+      className="movie-card"
+      style={{ maxWidth: "350px", borderRadius: "10px", overflow: "hidden" }}
+    >
       <img
         src={imageUrl}
         alt={movie.titulo}
-        style={{ maxWidth: "50%",  height: "auto", margin: "auto", marginTop: '8px' }}
+        style={{
+          width: "250px",
+            height: "auto",
+            margin: "auto",
+          marginTop: "8px",
+        }}
       />
+      <h3
+        style={{
+          fontFamily: "Merriweathe, sans-serif",
+          textAlign: "center",
+          fontSize: "22px",
+          marginTop: "8px",
+        }}
+      >
+        {movie.titulo}
+      </h3>
       {/*<p style={{ fontFamily: 'Roboto, sans-serif', textAlign: 'justify', fontSize: '14px', marginTop: '20px' }}>{movie.sinopse}</p>*/}
-      <div className="movie-details">
-        <p>
-          <FaStar /> {movie.rate_avg}
-        </p>
+      <div
+        className="movie-details"
+        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      >
         {showLink && <Link to={`/filme/${movie.id}`}>Ver detalhes</Link>}
       </div>
     </div>
